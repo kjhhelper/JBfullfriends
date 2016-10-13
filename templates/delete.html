@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>delete</title>
+</head>
+<body>
+<h2>You sure you want to delete?</h2>
+
+<form action='/friends/{{friends['id']}}/deleteconfirm' method='post'>
+	<input type='hidden' value='{{friends['id']}}'>
+	<input type='submit' name='delete' value='Yes'>
+</form>
+
+<form action='/' method='get'>
+	<input type='hidden' value='{{friends['id']}}'>
+	<input type='submit' name='delete' value='No'>
+</form>
+
+</body>
+</html>

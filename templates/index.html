@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>index</title>
+</head>
+
+<body>
+	<h2>** enter all friends list **</h2>
+
+		{% with messages = get_flashed_messages() %}
+			{%if messages%}
+				{%for message in messages%}
+					<p>{{ messages }}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %} <!--this is for error msgs to print-->
+
+<h3>friends list</h3>
+<div>
+	{% for friends in friends %}
+			<p>first name:{{friends['first_name']}}</p>
+			<p>last name:{{friends['last_name']}}</p>
+			<p>email: {{friends['email']}}</p>
+			created at: {{friends['created_at']}}
+</div>
+	<form action='/friends/{{friends['id']}}/edit' method='post'>
+		<input type='hidden' value='{{friends['id']}}'>
+		<input type='submit' value='edit'>
+	</form>
+
+	<form action='/friends/{{friends['id']}}/delete' method='post'>
+		<input type='hidden' value='{{friends['id']}}'>
+		<input type='submit' value='delete'>
+	</form>
+			
+	{% endfor %}
+<h3>new user</h3>
+	<form action='/friends' method='post'>
+		first name<input type='text' name='first_name'>
+		last name<input type='text' name='last_name'>
+		email<input type='text' name='email'>
+		<input type='submit' value='submit' name=''>
+	</form>
+</body>
+</html>
